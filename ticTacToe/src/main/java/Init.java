@@ -1,3 +1,5 @@
+package main.java;
+
 import objects.Board;
 import players.Glados;
 import players.Player;
