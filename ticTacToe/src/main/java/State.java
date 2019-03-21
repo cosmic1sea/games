@@ -1,3 +1,5 @@
+import objects.Board;
+
 public class State
 {
 

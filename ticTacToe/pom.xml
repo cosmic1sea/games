@@ -11,4 +11,8 @@
 
     <artifactId>riddler-ticTacToe</artifactId>
 
+    <properties>
+        <src.dir>src/main/java</src.dir>
+    </properties>
+
 </project>

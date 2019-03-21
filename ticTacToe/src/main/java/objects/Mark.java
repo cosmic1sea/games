@@ -1,3 +1,5 @@
+package objects;
+
 public class Mark
 {
     public static final char X = 'x';

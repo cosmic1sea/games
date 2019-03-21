@@ -1,9 +1,10 @@
+package objects;
 
 public class Board
 {
     private char[][] theBoard = new char[3][3];
 
-    char[][] getEmptyBoard()
+    public char[][] getEmptyBoard()
     {
         wipeBoard();
         return theBoard;
@@ -38,5 +39,10 @@ public class Board
         theBoard[2][0] = Mark.EMPTY;
         theBoard[2][1] = Mark.EMPTY;
         theBoard[2][2] = Mark.EMPTY;
+    }
+
+    public boolean isBoardFull()
+    {
+        return false;
     }
 }
