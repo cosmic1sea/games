@@ -1,14 +1,16 @@
-//package main.java;
+package com.hackerz.ticTacToe;
 
+import com.hackerz.ticTacToe.objects.Board;
+import com.hackerz.ticTacToe.players.Player;
 import lombok.Builder;
 import lombok.NonNull;
-import objects.Board;
-import players.Player;
 
 @Builder
 public class Judy
 {
-    boolean boardFull = false;
+    boolean isWinner = false;
+
+    boolean isDraw = false;
 
     boolean isPlayerOneTurn = true;
 
@@ -22,17 +24,20 @@ public class Judy
 
     public void runGame()
     {
-        while (!boardFull)
+        while (!isDraw || !isWinner)
         {
             if (isPlayerOneTurn)
             {
                 playerOne.makeMove(board.getTheBoard());
+                // did player 1 win?
+                // was it a draw?
             }
             else
             {
                 playerTwo.makeMove(board.getTheBoard());
+                // did player 2 win?
+                // was it a draw?
             }
-            boardFull = board.isBoardFull();
             isPlayerOneTurn = !isPlayerOneTurn;
         }
 

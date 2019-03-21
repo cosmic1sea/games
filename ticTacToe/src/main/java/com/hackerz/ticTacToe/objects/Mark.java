@@ -1,4 +1,4 @@
-package objects;
+package com.hackerz.ticTacToe.objects;
 
 public class Mark
 {

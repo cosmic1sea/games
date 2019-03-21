@@ -1,9 +1,9 @@
-//package main.java;
+package com.hackerz.ticTacToe;
 
-import objects.Board;
-import players.Glados;
-import players.Player;
-import players.PlayerImpl;
+import com.hackerz.ticTacToe.objects.Board;
+import com.hackerz.ticTacToe.players.Glados;
+import com.hackerz.ticTacToe.players.Player;
+import com.hackerz.ticTacToe.players.PlayerImpl;
 
 class Init
 {

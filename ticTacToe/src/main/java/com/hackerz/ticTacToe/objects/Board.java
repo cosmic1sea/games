@@ -1,4 +1,4 @@
-package objects;
+package com.hackerz.ticTacToe.objects;
 
 import lombok.Getter;
 
