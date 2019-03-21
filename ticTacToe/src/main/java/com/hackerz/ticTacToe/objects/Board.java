@@ -1,5 +1,4 @@
 package com.hackerz.ticTacToe.objects;
-import com.hackerz.ticTacToe.Judy;
 
 import lombok.Getter;
 
