@@ -15,9 +15,9 @@ public class Board
         wipeBoard();
     }
 
-    public void setBoardState(final char[][] newState)
+    public void setSpace (final String key, final Character value)
     {
-
+        theBoard.put(key, value);
     }
 
     private void wipeBoard()
