@@ -16,11 +16,6 @@ public class Board
         wipeBoard();
     }
 
-    public void setSpace (final String key, final Character value)
-    {
-        theBoard.put(key, value);
-    }
-
     private void wipeBoard()
     {
         theBoard.put("A1", Mark.EMPTY);
