@@ -1,18 +1,15 @@
 package objects;
 
+import lombok.Getter;
+
 public class Board
 {
+    @Getter
     private char[][] theBoard = new char[3][3];
 
-    public char[][] getEmptyBoard()
+    public Board()
     {
         wipeBoard();
-        return theBoard;
-    }
-
-    public char[][] getTheBoard()
-    {
-        return theBoard;
     }
 
     public void setBoardState(final char[][] newState)

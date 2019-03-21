@@ -15,11 +15,12 @@ class Init
         Board newBoard = new Board();
         final Player humanPlayer = new PlayerImpl();
         final Player robot = new Glados();
-        final Judy judge = Judy.builder().build();
-
-
-        char[][] board = newBoard.getEmptyBoard();
-
-
+        final Judy judge = Judy
+                .builder()
+                .playerOne(humanPlayer)
+                .playerTwo(robot)
+                .board(newBoard)
+                .build();
+        judge.runGame();
     }
 }

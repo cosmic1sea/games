@@ -7,13 +7,13 @@ public class Glados implements Player
     @Override
     public char[][] makeMove(final char[][] currentState)
     {
+
         return;
     }
 
     private char evaluate()
     {
 
-        return Mark.EMPTY;
     }
 
 
