@@ -8,11 +8,11 @@ import lombok.NonNull;
 @Builder
 public class Judy
 {
-    boolean isWinner = false;
+    private boolean isWinner = false;
 
-    boolean isDraw = false;
+    private boolean isDraw = false;
 
-    public boolean isPlayerOneTurn = true;
+    private boolean isPlayerOneTurn = true;
 
     @NonNull
     final Player playerOne;
@@ -31,29 +31,36 @@ public class Judy
             if (isPlayerOneTurn)
             {
                 playerOne.makeMove(board.getTheBoard());
-                // did player 1 win?
-                // was it a draw?
             }
             else
             {
                 playerTwo.makeMove(board.getTheBoard());
-                // did player 2 win?
-                // was it a draw?
             }
+
+            // Determine if there is a winner or if there was a draw
+            isWinner = board.isWinner();
+            if (isWinner)
+            {
+                if (isPlayerOneTurn)
+                {
+                    System.out.println("Player one is the winner!");
+                }
+                else
+                {
+                    System.out.println("Player two is the winner!");
+                }
+                break;
+            }
+            isDraw = board.isDraw();
+            if (isDraw)
+            {
+                System.out.println("It was a draw!");
+                break;
+            }
+
+            // Other player's turn
             isPlayerOneTurn = !isPlayerOneTurn;
             orwell.writeToFile();
         }
-        
     }
-    
-    public boolean stateChange()
-    {
-        
-        return false;
-    }
-    
-    
-    
-    
-
 }

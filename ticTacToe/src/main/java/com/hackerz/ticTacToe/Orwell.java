@@ -12,7 +12,7 @@ public class Orwell
     @SneakyThrows
     public void writeToFile()
     {
-        Map<String, Character> theBoard = new HashMap<String, Character>();
+        Map<String, Character> theBoard = new HashMap<>();
         Properties properties = new Properties();
 
         for (Map.Entry<String, Character> entry : theBoard.entrySet())

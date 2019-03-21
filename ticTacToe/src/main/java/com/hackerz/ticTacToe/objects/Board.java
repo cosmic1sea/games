@@ -38,16 +38,14 @@ public class Board
     {
         return theBoard.containsValue(Mark.EMPTY);
     }
-    
-    
+
+    public boolean isDraw()
+    {
+        return isBoardFull() && !isWinner();
     }
 
-    public boolean endGame()
+    public boolean isWinner()
     {
-        if(isBoardFull())
-        {
-            return true;
-        }
         //Horizontal
         if(theBoard.get("A1") == Mark.X && theBoard.get("A2") == Mark.X && theBoard.get("A3") == Mark.X
                 || theBoard.get("A1") == Mark.O && theBoard.get("A2") == Mark.O && theBoard.get("A3") == Mark.O)
@@ -86,7 +84,6 @@ public class Board
         {
             return true;
         }
-        
         return false;
     }
 }
