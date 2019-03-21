@@ -12,5 +12,25 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+            <execution>
+                <id>test</id>
+                <phase>generate-sources</phase>
+                <goals>
+                    <goal>add-source</goal>
+                </goals>
+                <configuration>
+                    <sources>
+                        <source>${basedir}/ticTacToe/src</source>
+                    </sources>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
 </project>
 
