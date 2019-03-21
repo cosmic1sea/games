@@ -12,7 +12,7 @@ public class Judy
 
     boolean isDraw = false;
 
-    boolean isPlayerOneTurn = true;
+    public boolean isPlayerOneTurn = true;
 
     @NonNull
     final Player playerOne;
@@ -21,6 +21,8 @@ public class Judy
     final Player playerTwo;
 
     final Board board;
+   
+    final Orwell orwell = new Orwell();
 
     public void runGame()
     {
@@ -39,9 +41,19 @@ public class Judy
                 // was it a draw?
             }
             isPlayerOneTurn = !isPlayerOneTurn;
+            orwell.writeToFile();
         }
-
+        
     }
-
+    
+    public boolean stateChange()
+    {
+        
+        return false;
+    }
+    
+    
+    
+    
 
 }

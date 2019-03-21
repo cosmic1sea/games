@@ -1,4 +1,5 @@
 package com.hackerz.ticTacToe.objects;
+import com.hackerz.ticTacToe.Judy;
 
 import lombok.Getter;
 
@@ -36,6 +37,9 @@ public class Board
     public boolean isBoardFull()
     {
         return theBoard.containsValue(Mark.EMPTY);
+    }
+    
+    
     }
 
     public boolean endGame()

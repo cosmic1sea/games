@@ -25,4 +25,5 @@ class Init
                 .build();
         judge.runGame();
     }
+   
 }
