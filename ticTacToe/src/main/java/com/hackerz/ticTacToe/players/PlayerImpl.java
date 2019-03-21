@@ -1,16 +1,23 @@
 package com.hackerz.ticTacToe.players;
 
-import com.hackerz.ticTacToe.objects.Board;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PlayerImpl implements Player
 {
-
     @Override
-    public Board makeMove(final Board currentBoard)
+    public Map<String, Character> makeMove(final Map<String, Character> currentBoard)
     {
         // TODO: link to Jeff
-        final Board newBoard
+        // read from Jeff's file
+        final List<String> fileListStructure = new ArrayList<>(); // temp
 
-        return;
+        return convertListStructureToBoard(fileListStructure);
+    }
+
+    private Map<String, Character> convertListStructureToBoard(final List<String> fileListStructure)
+    {
+        // todo
     }
 }

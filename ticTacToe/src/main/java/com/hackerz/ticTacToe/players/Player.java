@@ -1,8 +1,8 @@
 package com.hackerz.ticTacToe.players;
 
-import com.hackerz.ticTacToe.objects.Board;
+import java.util.Map;
 
 public interface Player
 {
-    Board makeMove(final Board currentBoard);
+    Map<String, Character> makeMove(final Map<String, Character> currentBoard);
 }
