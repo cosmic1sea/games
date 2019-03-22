@@ -9,7 +9,9 @@ class Init
 {
     public static void main(String[] args)
     {
-        init();
+        
+        String string = new String(" , , ")
+        //init();
     }
 
     static private void init()
