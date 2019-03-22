@@ -1,6 +1,5 @@
 package com.hackerz.ticTacToe.players;
 
-
 import com.hackerz.ticTacToe.objects.Mark;
 
 import java.util.ArrayList;
@@ -37,6 +36,8 @@ public class Glados implements Player
         Map<String, Boolean> boardState = new HashMap<>();
         currentBoard.forEach((coords, mark) -> boardState.put(coords, isSpaceEmpty(coords, currentBoard)));
         boardState.forEach();
+
+        // if a space appears in 2 arrays it intersects
 
         // determine imperative block
 

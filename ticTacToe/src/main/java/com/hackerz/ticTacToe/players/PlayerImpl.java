@@ -19,5 +19,6 @@ public class PlayerImpl implements Player
     private Map<String, Character> convertListStructureToBoard(final List<String> fileListStructure)
     {
         // todo
+        return null;
     }
 }
