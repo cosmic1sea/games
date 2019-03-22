@@ -4,6 +4,7 @@ import com.hackerz.ticTacToe.objects.Board;
 import com.hackerz.ticTacToe.players.Player;
 import lombok.Builder;
 import lombok.NonNull;
+import lombok.SneakyThrows;
 
 @Builder
 public class Judy
@@ -24,6 +25,7 @@ public class Judy
    
     final Orwell orwell = new Orwell();
 
+    @SneakyThrows
     public void runGame()
     {
         while (!isDraw || !isWinner)

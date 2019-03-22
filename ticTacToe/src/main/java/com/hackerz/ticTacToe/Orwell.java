@@ -1,4 +1,8 @@
+package com.hackerz.ticTacToe;
+
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -6,15 +10,10 @@ import java.util.Properties;
 import com.hackerz.ticTacToe.objects.Board;
 
 public class Orwell
-{
-public boolean stateChange()
-{
-    public class Orwell
-    {
-          
-        public void writeToFile()
+{          
+        public void writeToFile() throws FileNotFoundException, IOException
         {
-            Map<String, Character> theBoard = new HashMap<String, Character>();
+            Map<String, Character> theBoard = new HashMap<>();
             Properties properties = new Properties();
 
             for (Map.Entry<String,Character> entry : theBoard.entrySet()) {
@@ -23,5 +22,5 @@ public boolean stateChange()
 
             properties.store(new FileOutputStream("file.name"), null);
         }
-}
-}
+    }
+

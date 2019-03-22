@@ -5,19 +5,32 @@ import com.hackerz.ticTacToe.players.Glados;
 import com.hackerz.ticTacToe.players.Player;
 import com.hackerz.ticTacToe.players.PlayerImpl;
 
+import lombok.SneakyThrows;
+
 class Init
 {
     public static void main(String[] args)
     {
         
-        String string = new String(" , , ")
+        
+        
+        
+        
         //init();
     }
 
+    @SneakyThrows
     static private void init()
     {
         Board newBoard = new Board();
         final Player humanPlayer = new PlayerImpl();
+        
+        final PlayerImpl testPlayer = new PlayerImpl();
+        String[] test = new String[3];
+        test[1] = (" , , ");
+        test[2] = (" , , ");
+        test[3] = (" , , ");
+        testPlayer.convertListStructureToBoard(test);
         final Player robot = new Glados();
         final Judy judge = Judy
                 .builder()
