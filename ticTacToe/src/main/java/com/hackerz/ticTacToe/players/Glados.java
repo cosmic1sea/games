@@ -3,6 +3,7 @@ package com.hackerz.ticTacToe.players;
 import com.hackerz.ticTacToe.objects.Mark;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,20 +25,49 @@ public class Glados implements Player
 
     private final Character enemyMark = Mark.X;
 
+    private final Random random = new Random();
+
+    private Map<String, Character> currentBoard;
+
     @Override
     public Map<String, Character> makeMove(final Map<String, Character> currentBoard)
     {
+        this.currentBoard = currentBoard;
         initWeightedMaps();
-        final String newSpace = evaluateRandomly(currentBoard);
+        // Make sure we select center first if available
+        if (selectCenterIfAvailable())
+        {
+            this.currentBoard.put("B2", myMark);
+            return this.currentBoard;
+        }
+        // todo handle pincer middle
+        final String newSpace = evaluateRandomly();
         currentBoard.put(newSpace, myMark);
-        return currentBoard;
+        return this.currentBoard;
     }
 
-    private void blockEnemyWinningSpaces(final Map<String, Character> currentBoard)
+    private boolean selectCenterIfAvailable()
     {
-//        Map<String, Boolean> boardState = new HashMap<>();
-//        currentBoard.forEach((coords, mark) -> boardState.put(coords, isSpaceEmpty(coords, currentBoard)));
-//        boardState.forEach();
+        return isSpaceEmpty("B2");
+    }
+
+    private void blockEnemyWinningSpaces()
+    {
+        currentBoard.forEach((coords, mark) -> {
+            if (!isSpaceEmpty(coords) && isSpaceEnemy(coords))
+            {
+
+            }
+        });
+
+        List<List<String>> possibleEnemyWinningRows = new ArrayList<>();
+
+        winningRows.forEach(list -> {
+            if (list.contains(currentBoard.toString()))
+            {
+                possibleEnemyWinningRows.add(list);
+            }
+        });
 
         // if a space appears in 2 arrays it intersects
 
@@ -61,15 +91,12 @@ public class Glados implements Player
     /**
      * Currently randomly picks a move based on weight.
      *
-     * @param currentBoard - the current board state
      * @return new move
      */
-    private String evaluateRandomly(final Map<String, Character> currentBoard)
+    private String evaluateRandomly()
     {
-        final Random random = new Random();
-
-        // Weight of 5
-        if (isSpaceEmpty("B2", currentBoard))
+        // Weight of 4
+        if (isSpaceEmpty("B2"))
         {
             return "B2";
         }
@@ -77,19 +104,19 @@ public class Glados implements Player
         // Weight of 3
         List<String> weightThreePossibilities = new ArrayList<>();
 
-        if (isSpaceEmpty("A1", currentBoard))
+        if (isSpaceEmpty("A1"))
         {
             weightThreePossibilities.add("A1");
         }
-        if (isSpaceEmpty("A3", currentBoard))
+        if (isSpaceEmpty("A3"))
         {
             weightThreePossibilities.add("A3");
         }
-        if (isSpaceEmpty("C1", currentBoard))
+        if (isSpaceEmpty("C1"))
         {
             weightThreePossibilities.add("C1");
         }
-        if (isSpaceEmpty("C3", currentBoard))
+        if (isSpaceEmpty("C3"))
         {
             weightThreePossibilities.add("C3");
         }
@@ -108,19 +135,19 @@ public class Glados implements Player
         // Weight of 2
         List<String> weightTwoPossibilities = new ArrayList<>();
 
-        if (isSpaceEmpty("A2", currentBoard))
+        if (isSpaceEmpty("A2"))
         {
             weightTwoPossibilities.add("A2");
         }
-        if (isSpaceEmpty("B1", currentBoard))
+        if (isSpaceEmpty("B1"))
         {
             weightTwoPossibilities.add("B1");
         }
-        if (isSpaceEmpty("B3", currentBoard))
+        if (isSpaceEmpty("B3"))
         {
             weightTwoPossibilities.add("B3");
         }
-        if (isSpaceEmpty("C2", currentBoard))
+        if (isSpaceEmpty("C2"))
         {
             weightTwoPossibilities.add("C2");
         }
@@ -141,13 +168,54 @@ public class Glados implements Player
      * Is the given space available for our mark?
      *
      * @param coordinates - space in question
-     * @param currentBoard - current board state
      * @return state of the coordinates
      */
-    private boolean isSpaceEmpty(final String coordinates, final Map<String, Character> currentBoard)
+    private boolean isSpaceEmpty(final String coordinates)
     {
         // Is the enemy mark on a space or not empty? (Could be our mark)
         return !(currentBoard.get(coordinates).equals(enemyMark) || !currentBoard.get(coordinates).equals(Mark.EMPTY));
+    }
+
+    private boolean isSpaceEnemy(final String coordinates)
+    {
+        return currentBoard.get(coordinates).equals(enemyMark);
+    }
+
+    /**
+     * If we end up with a board position that has the enemy has opposing corners (we will assume we have already
+     * selected the center space because it has the highest value) then we can't select a corner even though
+     * at first glance that makes sense. We need to be on the attack instead of blocking the intersecting
+     * winning moves.
+     *
+     * @param possibleCornerOne - possible corner one
+     * @param possibleCornerTwo - possible corner two
+     * @return - a randomly selected middle space or null if no case is met
+     */
+    private String handleOpposingPincerAttack(final String possibleCornerOne, final String possibleCornerTwo)
+    {
+        if (possibleCornerOne.equals("A1") && possibleCornerTwo.equals("C3"))
+        {
+            return pickMiddleSpaceAtRandom();
+        }
+        if (possibleCornerOne.equals("C1") && possibleCornerTwo.equals("A3"))
+        {
+            return pickMiddleSpaceAtRandom();
+        }
+        if (possibleCornerOne.equals("C3") && possibleCornerTwo.equals("A1"))
+        {
+            return pickMiddleSpaceAtRandom();
+        }
+        if (possibleCornerOne.equals("A3") && possibleCornerTwo.equals("C1"))
+        {
+            return pickMiddleSpaceAtRandom();
+        }
+        return null;
+    }
+
+    private String pickMiddleSpaceAtRandom()
+    {
+        final List<String> middleMoves = Arrays.asList("A2", "B1", "B3", "C2");
+        return middleMoves.get(random.nextInt(3));
     }
 
 //    private boolean areSpacesEmpty(final Map<String, Character> currentBoard, final String... coordinates)
@@ -171,12 +239,17 @@ public class Glados implements Player
         weightedValuesEmptyBoard.put("C1", 3);
         weightedValuesEmptyBoard.put("C3", 3);
 
-        weightedValuesEmptyBoard.put("B2", 5);
+        weightedValuesEmptyBoard.put("B2", 4);
 
         // Winning rows
-        winningRows.add(new )
-
-
+        winningRows.add(Arrays.asList("A1", "A2", "A3"));
+        winningRows.add(Arrays.asList("B1", "B2", "B3"));
+        winningRows.add(Arrays.asList("C1", "C2", "C3"));
+        winningRows.add(Arrays.asList("A1", "B1", "C1"));
+        winningRows.add(Arrays.asList("A2", "B2", "C2"));
+        winningRows.add(Arrays.asList("A3", "B3", "C3"));
+        winningRows.add(Arrays.asList("A1", "B2", "C3"));
+        winningRows.add(Arrays.asList("A3", "B2", "C1"));
     }
 
 }
