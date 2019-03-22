@@ -28,7 +28,7 @@ public class Board
         theBoard.put("C3", Mark.EMPTY);
     }
 
-    public boolean isBoardFull()
+    private boolean isBoardFull()
     {
         return theBoard.containsValue(Mark.EMPTY);
     }

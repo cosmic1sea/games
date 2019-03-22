@@ -27,10 +27,33 @@ public class Glados implements Player
     public Map<String, Character> makeMove(final Map<String, Character> currentBoard)
     {
         initWeightedValues();
-        final String newSpace = evaluate(currentBoard);
+        final String newSpace = evaluateRandomly(currentBoard);
         currentBoard.put(newSpace, myMark);
         return currentBoard;
     }
+
+    private void blockEnemyWinningSpaces(final Map<String, Character> currentBoard)
+    {
+        Map<String, Boolean> boardState = new HashMap<>();
+        currentBoard.forEach((coords, mark) -> boardState.put(coords, isSpaceEmpty(coords, currentBoard)));
+        boardState.forEach();
+
+        // determine imperative block
+
+        // determine logical block (pincer attack)
+
+        // attack if nothing above
+
+        // will determine if first move
+    }
+
+    private void availableWinningSpaces()
+    {
+
+        // always use old moves that could produce a win
+    }
+
+    // TODO weighted map needs to change based on turn
 
     /**
      * Currently randomly picks a move based on weight.
@@ -38,12 +61,12 @@ public class Glados implements Player
      * @param currentBoard - the current board state
      * @return new move
      */
-    private String evaluate(final Map<String, Character> currentBoard)
+    private String evaluateRandomly(final Map<String, Character> currentBoard)
     {
         final Random random = new Random();
 
-        // Weight of 4
-        if (isSpaceEmpty("B2",currentBoard))
+        // Weight of 5
+        if (isSpaceEmpty("B2", currentBoard))
         {
             return "B2";
         }
@@ -51,19 +74,19 @@ public class Glados implements Player
         // Weight of 3
         List<String> weightThreePossibilities = new ArrayList<>();
 
-        if (isSpaceEmpty("A1",currentBoard))
+        if (isSpaceEmpty("A1", currentBoard))
         {
             weightThreePossibilities.add("A1");
         }
-        if (isSpaceEmpty("A3",currentBoard))
+        if (isSpaceEmpty("A3", currentBoard))
         {
             weightThreePossibilities.add("A3");
         }
-        if (isSpaceEmpty("C1",currentBoard))
+        if (isSpaceEmpty("C1", currentBoard))
         {
             weightThreePossibilities.add("C1");
         }
-        if (isSpaceEmpty("C3",currentBoard))
+        if (isSpaceEmpty("C3", currentBoard))
         {
             weightThreePossibilities.add("C3");
         }
@@ -82,19 +105,19 @@ public class Glados implements Player
         // Weight of 2
         List<String> weightTwoPossibilities = new ArrayList<>();
 
-        if (isSpaceEmpty("A2",currentBoard))
+        if (isSpaceEmpty("A2", currentBoard))
         {
             weightTwoPossibilities.add("A2");
         }
-        if (isSpaceEmpty("B1",currentBoard))
+        if (isSpaceEmpty("B1", currentBoard))
         {
             weightTwoPossibilities.add("B1");
         }
-        if (isSpaceEmpty("B3",currentBoard))
+        if (isSpaceEmpty("B3", currentBoard))
         {
             weightTwoPossibilities.add("B3");
         }
-        if (isSpaceEmpty("C2",currentBoard))
+        if (isSpaceEmpty("C2", currentBoard))
         {
             weightTwoPossibilities.add("C2");
         }
@@ -124,6 +147,14 @@ public class Glados implements Player
         return !(currentBoard.get(coordinates).equals(enemyMark) || !currentBoard.get(coordinates).equals(Mark.EMPTY));
     }
 
+//    private boolean areSpacesEmpty(final Map<String, Character> currentBoard, final String... coordinates)
+//    {
+//        for (String string : coordinates)
+//        {
+//
+//        }
+//    }
+
     private void initWeightedValues()
     {
         weightedValues.put("A2", 2);
@@ -136,7 +167,7 @@ public class Glados implements Player
         weightedValues.put("C1", 3);
         weightedValues.put("C3", 3);
 
-        weightedValues.put("B2", 4);
+        weightedValues.put("B2", 5);
     }
 
 }
