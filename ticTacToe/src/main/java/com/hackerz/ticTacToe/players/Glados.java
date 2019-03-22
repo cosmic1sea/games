@@ -16,7 +16,9 @@ public class Glados implements Player
     /**
      * Map of values which determine which spaces have the highest likelihood of winning.
      */
-    private final Map<String, Integer> weightedValues = new HashMap<>();
+    private final Map<String, Integer> weightedValuesEmptyBoard = new HashMap<>();
+
+    private final List<List<String>> winningRows = new ArrayList<>();
 
     private final Character myMark = Mark.O;
 
@@ -25,7 +27,7 @@ public class Glados implements Player
     @Override
     public Map<String, Character> makeMove(final Map<String, Character> currentBoard)
     {
-        initWeightedValues();
+        initWeightedMaps();
         final String newSpace = evaluateRandomly(currentBoard);
         currentBoard.put(newSpace, myMark);
         return currentBoard;
@@ -34,7 +36,7 @@ public class Glados implements Player
     private void blockEnemyWinningSpaces(final Map<String, Character> currentBoard)
     {
         Map<String, Boolean> boardState = new HashMap<>();
-        currentBoard.forEach((coords, mark) -> boardState.put(coords, isSpaceEmpty(coords, currentBoard)));
+//        currentBoard.forEach((coords, mark) -> boardState.put(coords, isSpaceEmpty(coords, currentBoard)));
         boardState.forEach();
 
         // if a space appears in 2 arrays it intersects
@@ -156,19 +158,25 @@ public class Glados implements Player
 //        }
 //    }
 
-    private void initWeightedValues()
+    private void initWeightedMaps()
     {
-        weightedValues.put("A2", 2);
-        weightedValues.put("B1", 2);
-        weightedValues.put("B3", 2);
-        weightedValues.put("C2", 2);
+        // Weighted values empty board
+        weightedValuesEmptyBoard.put("A2", 2);
+        weightedValuesEmptyBoard.put("B1", 2);
+        weightedValuesEmptyBoard.put("B3", 2);
+        weightedValuesEmptyBoard.put("C2", 2);
 
-        weightedValues.put("A1", 3);
-        weightedValues.put("A3", 3);
-        weightedValues.put("C1", 3);
-        weightedValues.put("C3", 3);
+        weightedValuesEmptyBoard.put("A1", 3);
+        weightedValuesEmptyBoard.put("A3", 3);
+        weightedValuesEmptyBoard.put("C1", 3);
+        weightedValuesEmptyBoard.put("C3", 3);
 
-        weightedValues.put("B2", 5);
+        weightedValuesEmptyBoard.put("B2", 5);
+
+        // Winning rows
+        winningRows.add(new )
+
+
     }
 
 }
