@@ -35,9 +35,9 @@ public class Glados implements Player
 
     private void blockEnemyWinningSpaces(final Map<String, Character> currentBoard)
     {
-        Map<String, Boolean> boardState = new HashMap<>();
+//        Map<String, Boolean> boardState = new HashMap<>();
 //        currentBoard.forEach((coords, mark) -> boardState.put(coords, isSpaceEmpty(coords, currentBoard)));
-        boardState.forEach();
+//        boardState.forEach();
 
         // if a space appears in 2 arrays it intersects
 
