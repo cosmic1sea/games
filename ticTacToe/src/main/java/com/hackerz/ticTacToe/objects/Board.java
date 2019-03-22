@@ -38,9 +38,7 @@ public class Board
     {
         return theBoard.containsValue(Mark.EMPTY);
     }
-    
-}   
-
+       
 
     public boolean endGame()
     {
