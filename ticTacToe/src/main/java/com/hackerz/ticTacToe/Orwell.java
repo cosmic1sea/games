@@ -2,24 +2,44 @@ package com.hackerz.ticTacToe;
 
 import lombok.SneakyThrows;
 
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 public class Orwell
 {
     @SneakyThrows
-    public void writeToFile()
+    public void writeToFile(final Map<String, Character> currentBoard)
     {
-        Map<String, Character> theBoard = new HashMap<>();
-        Properties properties = new Properties();
+        final List<String> rowList = new ArrayList<>();
+        rowList.add(currentBoard.get("A1") + "," + currentBoard.get("A2") + "," + currentBoard.get("A3"));
+        rowList.add(currentBoard.get("B1") + "," + currentBoard.get("B2") + "," + currentBoard.get("B3"));
+        rowList.add(currentBoard.get("C1") + "," + currentBoard.get("C2") + "," + currentBoard.get("C3"));
 
-        for (Map.Entry<String, Character> entry : theBoard.entrySet())
+        PrintWriter writer = new PrintWriter("/Users/christophermosley/workspace/file.txt", "UTF-8");
+        for(String row : rowList)
         {
-            properties.put(entry.getKey(), entry.getValue());
+            writer.println(row);
         }
+        writer.close();
+    }
 
-        properties.store(new FileOutputStream("file.name"), null);
+    @SneakyThrows
+    public Map<String, String> convertListStructureToBoard(final List<String> fileListStructure)
+    {
+        Map<String, String> map = new HashMap<>();
+        BufferedReader in = new BufferedReader(new FileReader("/Users/christophermosley/workspace/file.txt"));
+        String line = "";
+        while ((line = in.readLine()) != null) {
+            String parts[] = line.split("\t");
+            map.put(parts[0], parts[1]);
+        }
+        in.close();
+        System.out.println(map.toString());
+        return map;
     }
 }

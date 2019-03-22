@@ -30,7 +30,7 @@ public class Board
 
     private boolean isBoardFull()
     {
-        return theBoard.containsValue(Mark.EMPTY);
+        return !theBoard.containsValue(Mark.EMPTY);
     }
 
     public boolean isDraw()

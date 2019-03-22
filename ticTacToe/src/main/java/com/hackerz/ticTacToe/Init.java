@@ -4,14 +4,17 @@ import com.hackerz.ticTacToe.objects.Board;
 import com.hackerz.ticTacToe.players.Glados;
 import com.hackerz.ticTacToe.players.Player;
 import com.hackerz.ticTacToe.players.PlayerImpl;
+import lombok.SneakyThrows;
 
 class Init
 {
+    @SneakyThrows
     public static void main(String[] args)
     {
         init();
     }
 
+    @SneakyThrows
     static private void init()
     {
         Board newBoard = new Board();
